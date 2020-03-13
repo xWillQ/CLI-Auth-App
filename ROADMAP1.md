@@ -9,51 +9,51 @@
 
 № | Логин      |Пароль |           
 --|------------|-------|
-U1| admin      |admin  |
-U2| petr       |petr101|
-U3| vasya      |123    |
-U4| q          |!@#$   |
+U1| `admin`      |`admin`  |
+U2| `petr`       |`petr101`|
+U3| `vasya`      |`123`    |
+U4| `q`          |`!@#$`   |
 
 * 1.2. Описать ресурсы (R1.12) - 10 минут
 
 № | Ресурс |Роль   | Пользователь|         
 --|--------|-------|-------------|
-R1| A      |READ   | vasya       |
-R2| A.B    |EXECUTE| admin       |
-R3| A.B.C  |WRITE  | petr       | 
-R4| A.B.D  |READ   | q           |  
-R5| A.BB   |EXECUTE| petr        |  
-R6| AB     |WRITE  | admin       |
-R7| A      |READ   | admin       |
+R1| `A`      |`READ`   | `vasya`       |
+R2| `A.B`    |`EXECUTE`| `admin`       |
+R3| `A.B.C`  |`WRITE`  | `petr`       | 
+R4| `A.B.D`  |`READ`   | `q`           |  
+R5| `A.BB`   |`EXECUTE`| `petr`        |  
+R6| `AB`     |`WRITE`  | `admin`       |
+R7| `A`      |`READ`   | `admin`       |
 
 ### 2. Подготовка тестовых сценариев - 40 минут
 * 2.1. Подготовить и записать тесты в bat/sh файл (R1.12) - 20 минут
 
 № | Входные данные      |Ожидаемый результат |           
 ----|------------|-------|
-T1.1| app.jar      |1 + вывод справки  |
-T1.2| app.jar -h       |1 + вывод справки|
-T1.3| app.jar -q       |0 + вывод справки    |
-T2.1| app.jar -login vasya -pass 123        |0   |
-T2.2| app.jar -login VASYA -pass 123        |2   |
-T2.3| app.jar -login asd -pass asd        |3   |
-T2.3| app.jar -login admin -pass 123        |4   |
-T2.4| app.jar -login admin -pass admin        |0   |
-T3.1| app.jar -login vasya -pass 123 -role READ -res A        |0   |
-T3.2| app.jar -login vasya -pass 123 -role DELETE -res A        |5   |
-T3.3| app.jar -login vasya -pass 123 -role WRITE -res A        |6   |
-T3.4| app.jar -login vasya -pass 123 -role READ -res A.B        |0   |
-T3.5| app.jar -login admin -pass admin -role WRITE -res A.B.C        |0   |
-T3.6| app.jar -login petr -pass petr101 -role DELETE -res A.B.C        |0   |
-T3.7| app.jar -login vasya -pass 123 -role DELETE -res A        |4   |
-T3.8| app.jar -login vasya -pass 123 -role DELETE -res A.B.C        |6   |
-T3.9| app.jar -login admin -pass admin -role READ -res A.B.D        |6   |
-T3.10| app.jar -login admin -pass admin -role EXECUTE -res A        |0   |
-T4.1| app.jar -login vasya -pass 123 -role READ -res A -ds 2020-03-12 -de 2020-03-13 -vol 10       |0   |
-T4.2| app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-12 -de 2020-03-13 -vol 10        |6   |
-T4.3| app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-13 -de 2020-03-12 -vol 10        |7   |
-T4.4| app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020/03/12 -de 2020/03/13 -vol 10        |7   |
-T4.5| app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020.03.12 -de 2020.03.13 -vol 10        |7   |
+T1.1| `app.jar`      |1 + вывод справки  |
+T1.2| `app.jar -h`       |1 + вывод справки|
+T1.3| `app.jar -q`       |0 + вывод справки    |
+T2.1| `app.jar -login vasya -pass 123`        |0   |
+T2.2| `app.jar -login VASYA -pass 123`        |2   |
+T2.3| `app.jar -login asd -pass asd`        |3   |
+T2.3| `app.jar -login admin -pass 123`        |4   |
+T2.4| `app.jar -login admin -pass admin`        |0   |
+T3.1| `app.jar -login vasya -pass 123 -role READ -res A`        |0   |
+T3.2| `app.jar -login vasya -pass 123 -role DELETE -res A `       |5   |
+T3.3| `app.jar -login vasya -pass 123 -role WRITE -res A`        |6   |
+T3.4| `app.jar -login vasya -pass 123 -role READ -res A.B `       |0   |
+T3.5| `app.jar -login admin -pass admin -role WRITE -res A.B.C `       |0   |
+T3.6| `app.jar -login petr -pass petr101 -role DELETE -res A.B.C`        |0   |
+T3.7| `app.jar -login vasya -pass 123 -role DELETE -res A`        |4   |
+T3.8| `app.jar -login vasya -pass 123 -role DELETE -res A.B.C`        |6   |
+T3.9| `app.jar -login admin -pass admin -role READ -res A.B.D`        |6   |
+T3.10| `app.jar -login admin -pass admin -role EXECUTE -res A`        |0   |
+T4.1| `app.jar -login vasya -pass 123 -role READ -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`       |0   |
+T4.2| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`        |6   |
+T4.3| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-13 -de 2020-03-12 -vol 10`        |7   |
+T4.4| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020/03/12 -de 2020/03/13 -vol 10`        |7   |
+T4.5| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020.03.12 -de 2020.03.13 -vol 10`        |7   |
 * 2.2. Написать скрипт компиляции jar (R1.12) - 10 минут
 * 2.3. Написать скрипт запуска утилиты (R1.12) - 10 минут
 ### 3. Простейшие сценарии - 20 минут
