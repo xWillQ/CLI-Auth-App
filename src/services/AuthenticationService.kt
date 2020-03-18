@@ -14,6 +14,7 @@ class AuthenticationService(val users: List<User>, val resource: List<Resource>)
     fun CheckLoginPresenceInBase(login: String, users: List<User>): User? = users.find { it.login == login }
     fun GetPasswordHash(password: String): String = password.md5()
     fun GetPasswordHashInBase(user: User): String = user.hash
+    fun CheckPasswordsHashs(baseHash: String, nowHash: String): Boolean = baseHash == nowHash
 
 
     fun String.md5(): String {
