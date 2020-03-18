@@ -1,19 +1,15 @@
 import Handler
 import InitObjects.*
-import models.User
-import models.Session
-import models.Resource
-import services.AuthenticationService
-import services.AuthorizeService
-import services.HelpService
 import ExitCodes.*
-import javax.security.sasl.AuthorizeCallback
+import models.*
+import services.*
 import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
     val users = initUsers()
     val user: User?
+    val AuthorizeSuccess: Boolean?
     val recources = initResources()
     val handler = Handler(args)
     val help = HelpService()
@@ -27,14 +23,23 @@ fun main(args: Array<String>) {
         help.printHelp()
         exitProcess(SuccessCode.code)
     }
-    val authorizeService = AuthorizeService()
+    val authorizeService = AuthorizationService(recources)
     if (handler.authorizeNeeded()) {
         val role = handler.getRole()
-        val resource = handler.getResource()
-        val AuthorizeSuccess = authorizeService.authorization(user, role, resource)
+        val resourceName = handler.getResource()
+        AuthorizeSuccess = authorizeService.authorization(user, role, resourceName)
     } else {
         help.printHelp()
         exitProcess(SuccessCode.code)
+
+    }
+    if (!AuthorizeSuccess) {
+        exitProcess(NoAccess.code)
+    }
+    val accountService = AccountingService()
+    if (Handler.accountingNeeded()) {
+        accountService.accounting()
+
     }
 }
 
