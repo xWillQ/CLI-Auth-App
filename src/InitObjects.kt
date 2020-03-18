@@ -2,7 +2,7 @@ import models.User
 import models.Resource
 
 class InitObjects {
-    fun initUsers() {
+    fun initUsers(): List<User> {
         val users = listOf(
             User(
                 login = "admin",
@@ -21,9 +21,10 @@ class InitObjects {
                 hash = "3a4d92a1200aad406ac50377c7d863aa" //!@#$
             )
         )
+        return users
     }
 
-    fun initResources() {
+    fun initResources(): List<Resource> {
         val resorces = listOf(
             Resource(
                 resource = "A",
@@ -61,5 +62,6 @@ class InitObjects {
                 role = "READ"
             )
         )
+        return resorces
     }
 }
