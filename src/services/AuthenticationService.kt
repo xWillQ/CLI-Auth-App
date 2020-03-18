@@ -11,8 +11,10 @@ class AuthenticationService(val users: List<User>, val resource: List<Resource>)
     }
 
     fun CheckLoginValidity(login: String): Boolean = login.matches(Regex("[a-z]{1,10}"))
-    fun CheckLoginPresenceInBase(login: String, users: List<User>): User? = users.find { it.login == login }
+    fun CheckLoginPresenceInBase(login: String, users: List<User>): User? = users.find { it.h == login }
     fun GetPasswordHash(password: String): String = password.md5()
+    fun GetPasswordHashInBase(user: User): String = user.hash
+    
 
     fun String.md5(): String {
         val md = MessageDigest.getInstance("MD5")
