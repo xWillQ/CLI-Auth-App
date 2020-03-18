@@ -1,6 +1,5 @@
-class Resource(name: String){
-    private var name
-    init {
-        this.name = name
-    }
+package models
+
+class Resource(val resource: String, val login: String, val role: String) {
+
 }
