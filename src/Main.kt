@@ -14,7 +14,7 @@ import kotlin.system.exitProcess
 fun main(args: Array<String>) {
     val users = initUsers()
     val user: User?
-    val recources = initResources()
+    val resources = initResources()
     val handler = Handler(args)
     val help = HelpService()
     val authenService = AuthenticationService(users, recources)
