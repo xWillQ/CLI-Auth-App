@@ -20,5 +20,9 @@ class Handler(args: Array<String>) {
             printHelp()
             exitProcess(SuccessCode.code)
         }
+        if (!args.contains("-h") || !args.contains("-login")) {
+            printHelp()
+            exitProcess(HelpCode.code)
+        }
     }
 }
