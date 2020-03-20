@@ -40,7 +40,7 @@ class Handler(args: Array<String>) {
                 terminate(true, SuccessCode.code)
             }
         }
-        if (role != "" && !(role == "WRITE" || role == "READ" || role == "EXECUTE")) {
+        if (role != "" && !(possibleRoles.contains(role))) {
             exitProcess(UnknownRole.code)
         }
     }
@@ -64,3 +64,5 @@ class Handler(args: Array<String>) {
         exitProcess(errorCode)
     }
 }
+
+val possibleRoles: Array<String> = arrayOf("WRITE", "READ", "EXECUTE")
