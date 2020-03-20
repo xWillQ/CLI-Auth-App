@@ -1,4 +1,3 @@
-import Handler
 import InitObjects.*
 import ExitCodes.*
 import models.*
@@ -12,24 +11,19 @@ fun main(args: Array<String>) {
     val AuthorizeSuccess: Boolean?
     val recources = initResources()
     val handler = Handler(args)
-    val help = HelpService()
     val authenService = AuthenticationService(users, recources)
     if (handler.authenNeeded()) {
-        val login = handler.getLogin()
-        val password = handler.getPassword()
-        user = authenService.authentication(login, password)
+        user = authenService.authentication(handler.login, handler.password)
 
     } else {
-        help.printHelp()
+        printHelp()
         exitProcess(SuccessCode.code)
     }
     val authorizeService = AuthorizationService(recources)
     if (handler.authorizeNeeded()) {
-        val role = handler.getRole()
-        val resourceName = handler.getResource()
-        AuthorizeSuccess = authorizeService.authorization(user, role, resourceName)
+        AuthorizeSuccess = authorizeService.authorization(user, handler.role, handler.resource)
     } else {
-        help.printHelp()
+        printHelp()
         exitProcess(SuccessCode.code)
 
     }
