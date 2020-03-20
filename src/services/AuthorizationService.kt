@@ -20,12 +20,15 @@ class AuthorizationService(private val resources: List<Resource>) {
     private fun getAccessResources(login: String, resources: List<Resource>): List<Resource> =
         resources.filter { it.login == login }
 
+    private fun checkAccess(needResourceName: String, resourceName: String): Boolean =
+        needResourceName.startsWith(resourceName) || needResourceName == resourceName
+
     private fun checkAccess(resources: List<Resource>, needResourceName: String): Pair<Boolean, MutableList<String>> {
         var access = false
         val roles = mutableListOf<String>()
         for (resource in resources) {
             val resourceName = getResourceName(resource)
-            if (needResourceName.startsWith(resourceName) || needResourceName == resourceName) {
+            if (checkAccess(needResourceName, resourceName)) {
                 access = true
                 val role = gerResourceRole(resource)
                 roles.add(role)
