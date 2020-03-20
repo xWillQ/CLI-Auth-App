@@ -4,7 +4,7 @@ import ExitCodes.*
 
 class Handler(args: Array<String>) {
     private val parsedArgs = args
-    var username = ""
+    var login = ""
         private set
     var password = ""
         private set
@@ -18,6 +18,7 @@ class Handler(args: Array<String>) {
         private set
     var volume = ""
         private set
+
     init {
         if (parsedArgs.isEmpty()) {
             printHelp()
@@ -42,7 +43,7 @@ class Handler(args: Array<String>) {
         for (arg in parsedArgs) {
             when (arg) {
                 "-login" -> if (args.indexOf(arg) != args.size) {
-                    username = args[args.indexOf(arg) + 1]
+                    login = args[args.indexOf(arg) + 1]
                 }
                 "-pass" -> if (args.indexOf(arg) != args.size) {
                     password = args[args.indexOf(arg) + 1]
@@ -67,11 +68,13 @@ class Handler(args: Array<String>) {
     }
 
     fun authenNeeded(): Boolean {
-        return username != "" && password != ""
+        return login != "" && password != ""
     }
+
     fun authorizeNeeded(): Boolean {
         return authenNeeded() && resource != "" && password != ""
     }
+
     fun roleExist(): Boolean {
         return role == "WRITE" || role == "READ" || role == "DELETE"
     }
