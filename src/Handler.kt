@@ -59,10 +59,13 @@ class Handler(args: Array<String>) {
         }
     }
 
-    public fun authenNeeded(): Boolean {
+    fun authenNeeded(): Boolean {
         return username != "" && password != ""
     }
-    public fun authorizeNeeded(): Boolean {
+    fun authorizeNeeded(): Boolean {
         return authenNeeded() && resource != "" && password != ""
+    }
+    fun roleExist(): Boolean {
+        return role == "WRITE" || role == "READ" || role == "DELETE"
     }
 }
