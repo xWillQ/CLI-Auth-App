@@ -51,7 +51,7 @@ T3.9| `app.jar -login admin -pass admin -role READ -res A.B.D`        |0   |
 T3.10| `app.jar -login admin -pass admin -role EXECUTE -res A`        |6   |
 T4.1| `app.jar -login vasya -pass 123 -role READ -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`       |0   |
 T4.2| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`        |6   |
-T4.3| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-13 -de 2020-03-12 -vol 10`        |7   |
+T4.3| `app.jar -login vasya -pass 123 -role READ -res A -ds 2020-03-13 -de 2020-03-12 -vol 10`        |7   |
 T4.4| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020/03/12 -de 2020/03/13 -vol 10`        |7   |
 T4.5| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020.03.12 -de 2020.03.13 -vol 10`        |7   |
 * 2.2. Написать скрипт компиляции jar (R1.12) - 10 минут
