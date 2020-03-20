@@ -43,7 +43,7 @@ T3.1| `app.jar -login vasya -pass 123 -role READ -res A`        |0   |
 T3.2| `app.jar -login vasya -pass 123 -role DELETE -res A `       |5   |
 T3.3| `app.jar -login vasya -pass 123 -role WRITE -res A`        |6   |
 T3.4| `app.jar -login vasya -pass 123 -role READ -res A.B `       |0   |
-T3.5| `app.jar -login admin -pass admin -role WRITE -res A.B.C `       |0   |
+T3.5| `app.jar -login admin -pass admin -role READ -res A.B.C `       |0   |
 T3.6| `app.jar -login petr -pass petr101 -role DELETE -res A.B.C`        |0   |
 T3.7| `app.jar -login vasya -pass 123 -role DELETE -res A`        |4   |
 T3.8| `app.jar -login vasya -pass 123 -role DELETE -res A.B.C`        |6   |
