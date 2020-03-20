@@ -1,3 +1,5 @@
+package InitObjects
+
 import models.User
 import models.Resource
 
