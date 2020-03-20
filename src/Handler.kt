@@ -1,7 +1,6 @@
 import services.*
 import kotlin.system.exitProcess
 import ExitCodes.*
-import kotlin.IndexOutOfBoundsException as KotlinIndexOutOfBoundsException
 
 class Handler(args: Array<String>) {
     var login = ""
@@ -38,9 +37,7 @@ class Handler(args: Array<String>) {
                     "-de" -> dateEnd = args[args.indexOf(arg) + 1]
                     "-vol" -> volume = args[args.indexOf(arg) + 1]
                 }
-            }
-            catch (e: IndexOutOfBoundsException)
-            {
+            } catch (e: IndexOutOfBoundsException) {
                 terminate(true, SuccessCode.code)
             }
         }
