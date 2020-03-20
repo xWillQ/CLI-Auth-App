@@ -23,20 +23,20 @@ class Handler(args: Array<String>) {
         when {
             args.isEmpty() -> terminate(true, HelpCode.code)
             args[0] == "-h" -> terminate(true, HelpCode.code)
-            args.size != 4 && args.size != 6 && args.size != 8 -> terminate(true, SuccessCode.code)
+            args.size != 4 && args.size != 6 && args.size != 8 && args.size != 14 -> terminate(true, SuccessCode.code)
             args[0] != "-h" && args[0] != "-login" -> terminate(true, HelpCode.code)
             !args.contains("-h") && !args.contains("-login") -> terminate(true, SuccessCode.code)
         }
         for (arg in args) {
             try {
-                when {
-                    arg == "-login" -> login = args[args.indexOf(arg) + 1]
-                    arg == "-pass" -> password = args[args.indexOf(arg) + 1]
-                    arg == "-role" -> role = args[args.indexOf(arg) + 1]
-                    arg == "-res" -> resource = args[args.indexOf(arg) + 1]
-                    arg == "-ds" -> dateStart = args[args.indexOf(arg) + 1]
-                    arg == "-de" -> dateEnd = args[args.indexOf(arg) + 1]
-                    arg == "-vol" -> volume = args[args.indexOf(arg) + 1]
+                when (arg) {
+                    "-login" -> login = args[args.indexOf(arg) + 1]
+                    "-pass" -> password = args[args.indexOf(arg) + 1]
+                    "-role" -> role = args[args.indexOf(arg) + 1]
+                    "-res" -> resource = args[args.indexOf(arg) + 1]
+                    "-ds" -> dateStart = args[args.indexOf(arg) + 1]
+                    "-de" -> dateEnd = args[args.indexOf(arg) + 1]
+                    "-vol" -> volume = args[args.indexOf(arg) + 1]
                 }
             }
             catch (e: IndexOutOfBoundsException)
