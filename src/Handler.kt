@@ -44,7 +44,7 @@ class Handler(args: Array<String>) {
                 terminate(true, SuccessCode.code)
             }
         }
-        if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE")) {
+        if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE" || role == "EXECUTE")) {
             exitProcess(UnknownRole.code)
         }
     }
