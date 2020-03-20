@@ -21,7 +21,12 @@ fun main(args: Array<String>) {
             val haveAccess = authorizeService.authorization(user, handler.role, handler.resource)
             when {
                 (!haveAccess) -> terminate(false, NoAccess.code)
-                (handler.accountingNeeded()) -> accountService.accounting()
+                (handler.accountingNeeded()) -> accountService.accounting(
+                    handler.dateStart,
+                    handler.dateEnd,
+                    handler.volume,
+                    handler.resource
+                )
                 else -> terminate(false, SuccessCode.code)
             }
         }
