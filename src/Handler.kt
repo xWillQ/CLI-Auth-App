@@ -12,9 +12,13 @@ class Handler(args: Array<String>) {
             printHelp()
             exitProcess(HelpCode.code)
         }
-        if (args.size != 4 || args.size !=6 || args.size !=8) {
+        if (args.size != 4 || args.size != 6 || args.size != 8) {
             printHelp()
             //Нужен ли exitProcess?
+        }
+        if (args[0] != "-h" || args[0] != "-login") {
+            printHelp()
+            exitProcess(SuccessCode.code)
         }
     }
 }
