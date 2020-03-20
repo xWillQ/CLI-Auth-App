@@ -63,9 +63,9 @@ class Handler(args: Array<String>) {
                     volume = args[args.indexOf(arg) + 1]
                 }
             }
-            if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE")) {
-                exitProcess(UnknownRole.code)
-            }
+        }
+        if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE")) {
+            exitProcess(UnknownRole.code)
         }
     }
 
