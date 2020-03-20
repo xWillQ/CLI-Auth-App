@@ -1,12 +1,10 @@
-import InitObjects.*
+import collections.*
 import ExitCodes.*
 import services.*
 import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
-    val users = initUsers()
-    val resources = initResources()
     val handler = Handler(args)
     val authService = AuthenticationService(users)
     val authorizeService = AuthorizationService(resources)
