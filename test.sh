@@ -85,14 +85,14 @@ echo $?
 echo "------------------------------------------------------------"
 echo "Test 3.2"
 echo "Input: -login vasya -pass 123 -role READ -res A -h"
-echo "Expected result: Manual and exit code 0"
+echo "Expected result: Manual and exit code 1"
 echo "Result:"
 nohup java -jar app.jar -login vasya -pass 123 -role READ -res A -h
 echo $?
 echo "------------------------------------------------------------"
 echo "Test 3.3"
 echo "Input: -login vasya -pass 123 -role WRITE -res A -h"
-echo "Expected result: Manual and exit code 6"
+echo "Expected result: Manual and exit code 1"
 echo "Result:"
 nohup java -jar app.jar -login vasya -pass 123 -role WRITE -res A -h
 echo $?
@@ -133,10 +133,10 @@ nohup java -jar app.jar -pass admin -login admin -role EXECUTE -res A.D.S
 echo $?
 echo "------------------------------------------------------------"
 echo "Test 3.9"
-echo "Input: -pass admin -pass admin -login admin -role EXECUTE -res A"
+echo "Input: -pass admin -login admin -role EXECUTE -res A"
 echo "Expected result: exit code 6"
 echo "Result:"
-nohup java -jar app.jar -pass admin -pass admin -login admin -role EXECUTE -res A
+nohup java -jar app.jar -pass admin -login admin -role EXECUTE -res A
 echo $?
 echo "------------------------------------------------------------"
 echo
