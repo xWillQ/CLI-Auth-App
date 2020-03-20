@@ -48,7 +48,7 @@ T3.6| `app.jar -login petr -pass petr101 -role DELETE -res A.B.C`        |5   |
 T3.7| `app.jar -login vasya -pass 123 -role DELETE -res A`        |5   |
 T3.8| `app.jar -login vasya -pass 123 -role DELETE -res A.B.C`        |5   |
 T3.9| `app.jar -login admin -pass admin -role READ -res A.B.D`        |0   |
-T3.10| `app.jar -login admin -pass admin -role EXECUTE -res A`        |0   |
+T3.10| `app.jar -login admin -pass admin -role EXECUTE -res A`        |6   |
 T4.1| `app.jar -login vasya -pass 123 -role READ -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`       |0   |
 T4.2| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-12 -de 2020-03-13 -vol 10`        |6   |
 T4.3| `app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020-03-13 -de 2020-03-12 -vol 10`        |7   |
