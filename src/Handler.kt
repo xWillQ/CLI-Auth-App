@@ -60,6 +60,9 @@ class Handler(args: Array<String>) {
     }
 
     public fun authenNeeded(): Boolean {
-        return parsedArgs.contains("-login") && parsedArgs.contains("-pass")
+        return username != "" && password != ""
+    }
+    public fun authorizeNeeded(): Boolean {
+        return authenNeeded() && resource != "" && password != ""
     }
 }
