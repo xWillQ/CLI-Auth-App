@@ -46,31 +46,4 @@ fun terminate(printHelp: Boolean, errorCode: Int) {
     exitProcess(errorCode)
 }
 
-    val recources = initResources()
-    val handler = Handler(args)
-    val authenService = AuthenticationService(users, recources)
-    if (handler.authenNeeded()) {
-        user = authenService.authentication(handler.login, handler.password)
-
-    } else {
-        printHelp()
-        exitProcess(SuccessCode.code)
-    }
-    val authorizeService = AuthorizationService(recources)
-    if (handler.authorizeNeeded()) {
-        AuthorizeSuccess = authorizeService.authorization(user, handler.role, handler.resource)
-    } else {
-        printHelp()
-        exitProcess(SuccessCode.code)
-
-    }
-    if (!AuthorizeSuccess) {
-        exitProcess(NoAccess.code)
-    }
-    val accountService = AccountingService()
-    if (Handler.accountingNeeded()) {
-        accountService.accounting()
-
-    }
-}
-
+   
