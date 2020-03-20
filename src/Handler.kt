@@ -1,6 +1,7 @@
 import services.*
 import kotlin.system.exitProcess
 import ExitCodes.*
+import kotlin.IndexOutOfBoundsException as KotlinIndexOutOfBoundsException
 
 class Handler(args: Array<String>) {
     var login = ""
@@ -24,20 +25,23 @@ class Handler(args: Array<String>) {
             args[0] == "-h" -> terminate(true, HelpCode.code)
             args.size != 4 || args.size != 6 || args.size != 8 -> terminate(true, SuccessCode.code)
             args[0] != "-h" || args[0] != "-login" -> terminate(true, HelpCode.code)
-            !args.contains("-h") || !args.contains("-login") -> terminate(true, SuccessCode.code)
+            !args.contains("-h") && !args.contains("-login") -> terminate(true, SuccessCode.code)
         }
         for (arg in args) {
-            when {
-                args.indexOf(arg) + 1 != args.size && arg == "-login" -> login = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-pass" -> password = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-role" -> role = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-res" -> resource = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-ds" -> dateStart = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-de" -> dateEnd = args[args.indexOf(arg) + 1]
-                args.indexOf(arg) + 1 != args.size && arg == "-vol" -> volume = args[args.indexOf(arg) + 1]
-                else -> if (args.indexOf(arg) + 1 == args.size) {
-                    terminate(true, SuccessCode.code)
+            try {
+                when {
+                    arg == "-login" -> login = args[args.indexOf(arg) + 1]
+                    arg == "-pass" -> password = args[args.indexOf(arg) + 1]
+                    arg == "-role" -> role = args[args.indexOf(arg) + 1]
+                    arg == "-res" -> resource = args[args.indexOf(arg) + 1]
+                    arg == "-ds" -> dateStart = args[args.indexOf(arg) + 1]
+                    arg == "-de" -> dateEnd = args[args.indexOf(arg) + 1]
+                    arg == "-vol" -> volume = args[args.indexOf(arg) + 1]
                 }
+            }
+            catch (e: IndexOutOfBoundsException)
+            {
+                terminate(true, SuccessCode.code)
             }
         }
         if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE")) {
