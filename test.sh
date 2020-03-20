@@ -89,3 +89,4 @@ echo $?
 echo "Test 4.5; input: app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020.03.12 -de 2020.03.13 -vol 10; expected result: Exit code 7"
 echo "Result:"
 nohup java -jar app.jar -login vasya -pass 123 -role WRITE -res A -ds 2020.03.12 -de 2020.03.13 -vol 10
+$SHELL
