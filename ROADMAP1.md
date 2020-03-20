@@ -37,8 +37,8 @@ T1.3| `app.jar -q`       |0 + вывод справки    |
 T2.1| `app.jar -login vasya -pass 123`        |0   |
 T2.2| `app.jar -login VASYA -pass 123`        |2   |
 T2.3| `app.jar -login asd -pass asd`        |3   |
-T2.3| `app.jar -login admin -pass 123`        |4   |
-T2.4| `app.jar -login admin -pass admin`        |0   |
+T2.4| `app.jar -login admin -pass 123`        |4   |
+T2.5| `app.jar -login admin -pass admin`        |0   |
 T3.1| `app.jar -login vasya -pass 123 -role READ -res A`        |0   |
 T3.2| `app.jar -login vasya -pass 123 -role DELETE -res A `       |5   |
 T3.3| `app.jar -login vasya -pass 123 -role WRITE -res A`        |6   |
