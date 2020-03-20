@@ -2,14 +2,14 @@ echo "Test 1.1; no input; expected result: Manual and exit code 1"
 echo "Result:"
 nohup java -jar app.jar
 echo $?
-echo"------------------------------------------------------------"
+echo "------------------------------------------------------------"
 echo
 
 echo "Test 1.2; input: -h; expected result: Manual and exit code 1"
 echo "Result:"
 nohup java -jar app.jar -h
 echo $?
-echo"-----------------------------------------------"
+echo "-----------------------------------------------"
 echo
 
 echo "Test 1.3; input: -q; expected result: Manual and exit code 0"
