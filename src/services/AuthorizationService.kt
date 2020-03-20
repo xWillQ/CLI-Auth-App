@@ -10,8 +10,6 @@ class AuthorizationService(private val resources: List<Resource>) {
         val access = accessResult.first
         val roles = accessResult.second.distinct()
         return (access && role in roles)
-
-
     }
 
     private fun getLogin(user: User): String = user.login
