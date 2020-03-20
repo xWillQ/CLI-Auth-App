@@ -4,10 +4,12 @@ import ExitCodes.*
 import java.time.LocalDate
 import kotlin.system.exitProcess
 
-class Session(val dateStart: String, val dateEnd: String, val vol: Int, val res: Resource) {
+class Session(val dateStart: String, val dateEnd: String, val vol: String, val res: Resource) {
     var formattedDateStart : LocalDate = LocalDate.now()
         private set
     var formattedDateEnd : LocalDate = LocalDate.now()
+        private set
+    var volume: Int = 0
         private set
     init {
         try {
@@ -20,6 +22,12 @@ class Session(val dateStart: String, val dateEnd: String, val vol: Int, val res:
         if (formattedDateStart.isAfter(formattedDateEnd))
         {
             exitProcess(IncorrectActivity.code)
+        }
+        try {
+            volume = vol.toInt()
+        }
+        catch (e: NumberFormatException) {
+            exitProcess(ExitCodes.IncorrectActivity.code)
         }
     }
 }
