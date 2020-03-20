@@ -4,13 +4,20 @@ import ExitCodes.*
 
 class Handler(args: Array<String>) {
     private val parsedArgs = args
-    private var username = ""
-    private var password = ""
-    private var role = ""
-    private var resource = ""
-    private var dateStart = ""
-    private var dateEnd = ""
-    private var volume = ""
+    var username = ""
+        private set
+    var password = ""
+        private set
+    var role = ""
+        private set
+    var resource = ""
+        private set
+    var dateStart = ""
+        private set
+    var dateEnd = ""
+        private set
+    var volume = ""
+        private set
     init {
         if (parsedArgs.isEmpty()) {
             printHelp()
