@@ -21,8 +21,8 @@ class Handler(args: Array<String>) {
     init {
         when {
             args.isEmpty() -> terminate(true, HelpCode.code)
-            args[0] == "-h" -> terminate(true, HelpCode.code)
-            !args.contains("-h") && !args.contains("-login") -> terminate(true, HelpCode.code)
+            args[0] == "-h" || args[0] == ""  -> terminate(true, HelpCode.code)
+            !args.contains("-h") && !args.contains("-login") -> terminate(true, SuccessCode.code)
             args.size != 4 && args.size != 6 && args.size != 8 && args.size != 14 -> terminate(true, SuccessCode.code)
         }
         for (arg in args) {
@@ -40,7 +40,7 @@ class Handler(args: Array<String>) {
                 terminate(true, SuccessCode.code)
             }
         }
-        if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE" || role == "EXECUTE")) {
+        if (role != "" && !(role == "WRITE" || role == "READ" || role == "EXECUTE")) {
             exitProcess(UnknownRole.code)
         }
     }
