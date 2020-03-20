@@ -19,48 +19,24 @@ class Handler(args: Array<String>) {
         private set
 
     init {
-        if (args.isEmpty()) {
-            printHelp()
-            exitProcess(HelpCode.code)
-        }
-        if (args[0] == "-h") {
-            printHelp()
-            exitProcess(HelpCode.code)
-        }
-        if (args.size != 4 || args.size != 6 || args.size != 8) {
-            printHelp()
-            //Нужен ли exitProcess code?
-        }
-        if (args[0] != "-h" || args[0] != "-login") {
-            printHelp()
-            exitProcess(SuccessCode.code)
-        }
-        if (!args.contains("-h") || !args.contains("-login")) {
-            printHelp()
-            exitProcess(HelpCode.code)
+        when {
+            args.isEmpty() -> terminate(true, SuccessCode.code)
+            args[0] == "-h" -> terminate(true, HelpCode.code)
+            args.size != 4 || args.size != 6 || args.size != 8 -> terminate(true, SuccessCode.code)
+            args[0] != "-h" || args[0] != "-login" -> terminate(true, HelpCode.code)
+            !args.contains("-h") || !args.contains("-login") -> terminate(true, SuccessCode.code)
         }
         for (arg in args) {
-            when (arg) {
-                "-login" -> if (args.indexOf(arg) != args.size) {
-                    login = args[args.indexOf(arg) + 1]
-                }
-                "-pass" -> if (args.indexOf(arg) != args.size) {
-                    password = args[args.indexOf(arg) + 1]
-                }
-                "-role" -> if (args.indexOf(arg) != args.size) {
-                    role = args[args.indexOf(arg) + 1]
-                }
-                "-res" -> if (args.indexOf(arg) != args.size) {
-                    resource = args[args.indexOf(arg) + 1]
-                }
-                "-ds" -> if (args.indexOf(arg) != args.size) {
-                    dateStart = args[args.indexOf(arg) + 1]
-                }
-                "-de" -> if (args.indexOf(arg) != args.size) {
-                    dateEnd = args[args.indexOf(arg) + 1]
-                }
-                "-vol" -> if (args.indexOf(arg) != args.size) {
-                    volume = args[args.indexOf(arg) + 1]
+            when {
+                args.indexOf(arg) + 1 != args.size && arg == "-login" -> login = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-pass" -> password = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-role" -> role = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-res" -> resource = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-ds" -> dateStart = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-de" -> dateEnd = args[args.indexOf(arg) + 1]
+                args.indexOf(arg) + 1 != args.size && arg == "-vol" -> volume = args[args.indexOf(arg) + 1]
+                else -> if (args.indexOf(arg) + 1 == args.size) {
+                    terminate(true, SuccessCode.code)
                 }
             }
         }
@@ -79,5 +55,12 @@ class Handler(args: Array<String>) {
 
     fun accountingNeeded(): Boolean {
         return authorizeNeeded() && dateEnd != "" && dateStart != "" && volume != ""
+    }
+
+    private fun terminate(printHelp: Boolean, errorCode: Int) {
+        if (printHelp) {
+            printHelp()
+        }
+        exitProcess(errorCode)
     }
 }
