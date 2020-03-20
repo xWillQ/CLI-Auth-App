@@ -1,9 +1,10 @@
 package services
 
-import models.*
+import models.Session
+import collections.addSession
 
 class AccountingService {
     fun accounting(dateStart: String, dateEnd: String, volume: String, resource: String) {
-        val session = Session(dateStart, dateEnd, volume, resource)
+        addSession(Session(dateStart, dateEnd, volume, resource))
     }
 }
