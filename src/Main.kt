@@ -5,7 +5,6 @@ import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
-    val args = arrayOf("-login", "petr", "-pass", "petr101")
     val users = initUsers()
     val resources = initResources()
     val handler = Handler(args)
