@@ -3,6 +3,8 @@ import kotlin.system.exitProcess
 import ExitCodes.*
 
 class Handler(args: Array<String>) {
+    val parsedArgs = args
+
     init {
         if (args.isEmpty()) {
             printHelp()
@@ -24,5 +26,9 @@ class Handler(args: Array<String>) {
             printHelp()
             exitProcess(HelpCode.code)
         }
+    }
+
+    public fun authenNeeded(): Boolean {
+        return parsedArgs.contains("-login") && parsedArgs.contains("-pass")
     }
 }
