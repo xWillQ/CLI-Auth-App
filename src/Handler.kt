@@ -29,7 +29,7 @@ class Handler(args: Array<String>) {
         }
         if (args.size != 4 || args.size != 6 || args.size != 8) {
             printHelp()
-            //Нужен ли exitProcess?
+            //Нужен ли exitProcess code?
         }
         if (args[0] != "-h" || args[0] != "-login") {
             printHelp()
