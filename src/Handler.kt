@@ -63,6 +63,9 @@ class Handler(args: Array<String>) {
                     volume = args[args.indexOf(arg) + 1]
                 }
             }
+            if (role != "" && !(role == "WRITE" || role == "READ" || role == "DELETE")) {
+                exitProcess(UnknownRole.code)
+            }
         }
     }
 
@@ -75,10 +78,6 @@ class Handler(args: Array<String>) {
     }
 
     fun accountingNeeded(): Boolean {
-        return authorizeNeeded() && dateEnd != "" && dateStart != "" && volume !=""
-    }
-
-    fun roleExist(): Boolean {
-        return role == "WRITE" || role == "READ" || role == "DELETE"
+        return authorizeNeeded() && dateEnd != "" && dateStart != "" && volume != ""
     }
 }
