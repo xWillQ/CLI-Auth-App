@@ -7,4 +7,3 @@ class AccountingService {
         val session = Session(dateStart, dateEnd, volume, resource)
     }
 }
-

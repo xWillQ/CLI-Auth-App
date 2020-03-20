@@ -23,10 +23,10 @@ fun main(args: Array<String>) {
             when {
                 (!haveAccess) -> terminate(false, NoAccess.code)
                 (handler.accountingNeeded()) -> accountService.accounting(
-                    handler.dateStart,
-                    handler.dateEnd,
-                    handler.volume,
-                    handler.resource
+                        handler.dateStart,
+                        handler.dateEnd,
+                        handler.volume,
+                        handler.resource
                 )
                 else -> terminate(false, SuccessCode.code)
             }

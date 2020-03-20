@@ -16,10 +16,10 @@ class AuthorizationService(private val resources: List<Resource>) {
     private fun getResourceName(resource: Resource): String = resource.resource
     private fun gerResourceRole(resource: Resource): String = resource.role
     private fun getAccessResources(login: String, resources: List<Resource>): List<Resource> =
-        resources.filter { it.login == login }
+            resources.filter { it.login == login }
 
     private fun checkAccess(needResourceName: String, resourceName: String): Boolean =
-        needResourceName.startsWith(resourceName) || needResourceName == resourceName
+            needResourceName.startsWith(resourceName) || needResourceName == resourceName
 
     private fun checkAccess(resources: List<Resource>, needResourceName: String): Pair<Boolean, MutableList<String>> {
         var access = false
