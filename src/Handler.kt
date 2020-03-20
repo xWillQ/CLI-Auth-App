@@ -3,7 +3,6 @@ import kotlin.system.exitProcess
 import ExitCodes.*
 
 class Handler(args: Array<String>) {
-    private val parsedArgs = args
     var login = ""
         private set
     var password = ""
@@ -20,27 +19,27 @@ class Handler(args: Array<String>) {
         private set
 
     init {
-        if (parsedArgs.isEmpty()) {
+        if (args.isEmpty()) {
             printHelp()
             exitProcess(HelpCode.code)
         }
-        if (parsedArgs[0] == "-h") {
+        if (args[0] == "-h") {
             printHelp()
             exitProcess(HelpCode.code)
         }
-        if (parsedArgs.size != 4 || parsedArgs.size != 6 || parsedArgs.size != 8) {
+        if (args.size != 4 || args.size != 6 || args.size != 8) {
             printHelp()
             //Нужен ли exitProcess?
         }
-        if (parsedArgs[0] != "-h" || parsedArgs[0] != "-login") {
+        if (args[0] != "-h" || args[0] != "-login") {
             printHelp()
             exitProcess(SuccessCode.code)
         }
-        if (!parsedArgs.contains("-h") || !parsedArgs.contains("-login")) {
+        if (!args.contains("-h") || !args.contains("-login")) {
             printHelp()
             exitProcess(HelpCode.code)
         }
-        for (arg in parsedArgs) {
+        for (arg in args) {
             when (arg) {
                 "-login" -> if (args.indexOf(arg) != args.size) {
                     login = args[args.indexOf(arg) + 1]
@@ -73,6 +72,10 @@ class Handler(args: Array<String>) {
 
     fun authorizeNeeded(): Boolean {
         return authenNeeded() && resource != "" && password != ""
+    }
+
+    fun accountingNeeded(): Boolean {
+        return authorizeNeeded() && dateEnd != "" && dateStart != "" && volume !=""
     }
 
     fun roleExist(): Boolean {
