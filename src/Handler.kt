@@ -21,7 +21,7 @@ class Handler(args: Array<String>) {
     init {
         when {
             args.isEmpty() -> terminate(true, HelpCode.code)
-            args.contains("-h") || args[0] == ""  -> terminate(true, HelpCode.code)
+            args.contains("-h") || args[0] == "" -> terminate(true, HelpCode.code)
             !args.contains("-h") && !args.contains("-login") -> terminate(true, SuccessCode.code)
             args.size != 4 && args.size != 6 && args.size != 8 && args.size != 14 -> terminate(true, SuccessCode.code)
         }
