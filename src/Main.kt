@@ -5,6 +5,7 @@ import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
+    val args = arrayOf("-login", "petr", "-pass", "petr101")
     val users = initUsers()
     val resources = initResources()
     val handler = Handler(args)
@@ -16,7 +17,7 @@ fun main(args: Array<String>) {
     } else {
         val user = authService.authentication(handler.login, handler.password)
         if (!handler.authorizeNeeded()) {
-            terminate(true, HelpCode.code)
+            terminate(false, SuccessCode.code)
         } else {
             val haveAccess = authorizeService.authorization(user, handler.role, handler.resource)
             when {
